@@ -33,6 +33,7 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
         cache: 'npm'
 
+    - run: pwd
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
