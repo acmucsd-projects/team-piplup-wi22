@@ -33,11 +33,7 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
         cache: 'npm'
 
-    - run: npm i
-    - run: pwd
-    - run: ls -l
-    # see whether files exists
-    
+    - run: npm ci
     - run: npm run build --if-present
     - run: npm test
     
@@ -64,6 +60,6 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
         cache: 'npm'
 
-    - run: npm i
+    - run: npm ci
     - run: npm run build --if-present
     - run: npm test
