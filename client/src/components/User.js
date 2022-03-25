@@ -30,8 +30,12 @@ export const YourUser = () => {
                   <div className = 'userDCLINames'>John Smith</div>
                 </div>
               <div className = 'userEvents'>
-              <a href = "/user/id/events">Events Attending</a>
+                <a href = "/user/id/events">Events Attending</a>
               </div>
+            </div>
+            {/* Only render if id matches id on page */}
+            <div className = 'editUser'>
+              <a href = "/user/id/edit">Edit Profile</a>
             </div>
         </div>
   )

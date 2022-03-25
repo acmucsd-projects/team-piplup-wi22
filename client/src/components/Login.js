@@ -1,10 +1,16 @@
 import React,{ useState, useEffect } from 'react'
+import API from '../API'
 
 export const Login = () => {
     useEffect(() => {
         document.body.className = 'bodyLogin';
         return () => { document.body.className = ''; }
       });
+
+      
+    const loginUser = async (e) => {
+        e.preventDefault();
+    }
 
     return (
     <>
@@ -13,18 +19,18 @@ export const Login = () => {
     
     <div className = 'containerLogin'>
     <div className = 'Login'>
-        <div className = 'logtitle'>NAME HERE</div>
-        <form className = 'add-form'>
+        <div className = 'logtitle'>UCSD Events Finder</div>
+        <form onSubmit = {loginUser} className = 'add-form'>
             <div className= 'form-control'>
                 <label>Email</label>
-                <input required type='text' placeholder = 'Enter Email' />
+                <input name = 'email' required type='text' placeholder = 'Enter Email'/>
             </div>
             <div className= 'form-control'>
                 <label>Password</label>
-                <input required type='text' placeholder = 'Password' />
+                <input name = 'password' required type='text' placeholder = 'Password'/>
             </div>
+            <button type="submit" className = 'loginbtn'>Login</button>
         </form>
-        <button type="button" className = 'loginbtn'>Login</button>
     </div>
 
     {/* Create an Account Button*/}

@@ -229,5 +229,11 @@
 
 .backToUser{
   text-align: center;
-  margin-top: 30pxnp;
+  margin-top: 30px;
+}
+
+.editUser{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
 }
