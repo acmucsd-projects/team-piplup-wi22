@@ -26,6 +26,10 @@
   background-color: white;
 }
 
+.navBar{
+  margin-bottom: 60px;
+
+}
 .Login{
   display: flex;
   flex-direction: column;
