@@ -9,8 +9,11 @@ const API = {
     createUser: function (user){
         return axios.post(`${server}/users`, user)
     },
+    checkUser: function(user){
+        return axios.post(`${server}/users/login`, user)
+    },
     updateUser: function (user){
-        return axios.put()
+        return axios.put(`${server}/users`, user)
     },
     deleteUser: function(user){
         return axios.delete()

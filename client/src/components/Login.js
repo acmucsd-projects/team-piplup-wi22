@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import API from '../API'
+import { Navigate } from 'react-router-dom'
 
 export const Login = () => {
     useEffect(() => {
@@ -7,9 +8,25 @@ export const Login = () => {
         return () => { document.body.className = ''; }
       });
 
-      
+    
     const loginUser = async (e) => {
         e.preventDefault();
+        const payload = {
+            email: {
+                email: e.target.email.value,
+            },
+            password:{
+                password: e.target.password.value
+            }
+        }
+
+        const response = await API.checkUser(payload);
+        if(response.status === 200){
+            <Navigate to="/"/>
+        }
+        else{
+            alert('Invalid email or password')
+        }
     }
 
     return (
