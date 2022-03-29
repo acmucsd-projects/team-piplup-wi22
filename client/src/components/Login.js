@@ -22,7 +22,7 @@ export const Login = () => {
 
         const response = await API.checkUser(payload);
         if(response.status === 200){
-            <Navigate to="/"/>
+            <Navigate to="/events"/>
         }
         else{
             alert('Invalid email or password')
