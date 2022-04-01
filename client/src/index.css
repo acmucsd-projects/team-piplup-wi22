@@ -235,3 +235,8 @@
   text-align: center;
   margin-top: 30pxnp;
 }
+
+/* Events */
+.eventWrapper {
+  margin-bottom: 10px
+}

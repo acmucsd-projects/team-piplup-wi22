@@ -1,7 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const NavigationBar = () => {
@@ -11,7 +10,7 @@ export const NavigationBar = () => {
             <div className='navBar'>
             <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
             
-                <Navbar.Brand>Insert Cool Name Here</Navbar.Brand>
+                <Navbar.Brand>UCSD</Navbar.Brand>
                 <Nav>
 
                     {/*
