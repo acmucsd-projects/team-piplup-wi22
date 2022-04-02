@@ -60,21 +60,25 @@ router.get("/", async (req, res, next) => {
 
 //POST user(under the assumption input is correct)
 router.post("/", async function (req, res) {
-  const { user } = req.body;
-  const email = user.email;
-  if (!email.endsWith("@ucsd.edu")) {
-    return res
-      .status(404)
-      .json({ error: "You must use an UCSD email to sign in", user });
+  try {
+    const { user } = req.body;
+    const email = user.email;
+    if (!email.endsWith("@ucsd.edu")) {
+      return res
+        .status(400)
+        .json({ error: "You must use an UCSD email to sign in", user });
+    }
+    const userInDatabase = await User.findOne({ email });
+    if (userInDatabase) {
+      return res.status(400).json({ error: "Email already exist", user });
+    }
+    const newUser = await User.create(user);
+    newUser.password = await bcrypt.hash(newUser.password, saltRounds);
+    await newUser.save();
+    res.status(200).json({ newUser });
+  } catch (error) {
+    res.status(500).json({ error });
   }
-  const userInDatabase = await User.findOne({ email });
-  if (userInDatabase) {
-    return res.status(404).json({ error: "Email already exist", user });
-  }
-  const newUser = await User.create(user);
-  newUser.password = await bcrypt.hash(newUser.password, saltRounds);
-  await newUser.save();
-  res.status(200).json({ newUser });
 });
 
 router.post("/login", async function (req, res) {
@@ -89,7 +93,7 @@ router.post("/login", async function (req, res) {
     const isMatch = await bcrypt.compare(password, potentialUser.password);
     if (!isMatch) {
       return res
-        .status(404)
+        .status(400)
         .json({ error: "Password does not match", email, password });
     }
     res.status(200).json({ potentialUser });
