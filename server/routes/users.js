@@ -61,6 +61,16 @@ router.get("/", async (req, res, next) => {
 //POST user(under the assumption input is correct)
 router.post("/", async function (req, res) {
   const { user } = req.body;
+  const email = user.email;
+  if (!email.endsWith("@ucsd.edu")) {
+    return res
+      .status(404)
+      .json({ error: "You must use an UCSD email to sign in", user });
+  }
+  const userInDatabase = await User.findOne({ email });
+  if (userInDatabase) {
+    return res.status(404).json({ error: "Email already exist", user });
+  }
   const newUser = await User.create(user);
   newUser.password = await bcrypt.hash(newUser.password, saltRounds);
   await newUser.save();
