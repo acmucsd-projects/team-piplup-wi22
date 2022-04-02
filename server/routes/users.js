@@ -62,15 +62,15 @@ router.get("/", async (req, res, next) => {
 router.post("/", async function (req, res) {
   try {
     const { user } = req.body;
-    const email = user.email;
+    const { email } = user;
     if (!email.endsWith("@ucsd.edu")) {
       return res
         .status(400)
-        .json({ error: "You must use an UCSD email to sign in", user });
+        .json({ error: `You must use an UCSD email to sign in - ${email}` });
     }
     const userInDatabase = await User.findOne({ email });
     if (userInDatabase) {
-      return res.status(400).json({ error: "Email already exist", user });
+      return res.status(400).json({ error: `Email already exist - ${email}` });
     }
     const newUser = await User.create(user);
     newUser.password = await bcrypt.hash(newUser.password, saltRounds);
