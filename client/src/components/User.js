@@ -17,7 +17,6 @@ export const YourUser = () => {
       const fetchData = async () => {
         const result =  await API.getUser(id);
         setUser(result.data.user)
-        console.log(result.data.user);
       }
       fetchData();
     }, [])

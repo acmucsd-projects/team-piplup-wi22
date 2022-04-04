@@ -19,9 +19,6 @@ const API = {
     updateUser: function (id, user){
         return axios.put(`${server}/users/${id}`, user)
     },
-    deleteUser: function(user){
-        return axios.delete()
-    },
     updateUserProfile: function(id, file){
         return axios.put(`${server}/users/${id}/picture`, file)
     },

@@ -18,7 +18,6 @@ export const Events = () => {
     const fetchData = async () => {
       const result =  await API.getEvents();
       updateEvents(result.data.event);
-      console.log(result.data.event);
     }
     fetchData();
   }, [])

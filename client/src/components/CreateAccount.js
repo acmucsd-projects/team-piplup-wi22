@@ -23,7 +23,6 @@ export const CreateAccount = () => {
         }
        const response = await API.createUser(payload);
        if(response.status === 200){
-           alert('Created successfully');
            navigate('/');
        }
        else{
@@ -50,8 +49,6 @@ export const CreateAccount = () => {
             setDisabled(true)
         }
         setPasswords({...passwords})
-        console.log(passwords)
-        console.log(disabled)
     }
 
     

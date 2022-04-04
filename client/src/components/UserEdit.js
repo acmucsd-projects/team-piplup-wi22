@@ -51,14 +51,12 @@ export const UserEdit = () => {
                     file,
                     file.name
                 )
-                console.log(file)
                 const result = await API.updateUserProfile(id, profilePicture)
                 if(result.status === 200){
                     navigate(`/user/${id}`)
                 }
         }
         else{
-            console.log(payload)
             const response = await API.updateUser(id, payload);
             if(response.status === 200){
                 navigate(`/user/${id}`)
