@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-import NavigationBar from './NavigationBar'
 import API from '../API'
 
 export const CreateEvent = () => {
@@ -16,6 +15,7 @@ export const CreateEvent = () => {
 
     const createEvent = async (e) => {
         e.preventDefault();
+        console.log(e.target.startDate.value)
         const payload = {
             event: {
                 title: e.target.title.value,
@@ -42,7 +42,6 @@ export const CreateEvent = () => {
 
     return(
         <>
-            <NavigationBar/>
             <div className='createaccTitle'>Create Event</div>
             <form className = 'add-form' onSubmit = {createEvent}>
                 <div className= 'form-control'>
@@ -55,11 +54,11 @@ export const CreateEvent = () => {
                 </div>
                 <div className= 'form-control'>
                     <label>Start Date*</label>
-                    <input name = 'startDate' required type='date' placeholder = 'Enter Start Date'/>
+                    <input name = 'startDate' required type='datetime-local' placeholder = 'Enter Start Date'/>
                 </div>
                 <div className= 'form-control'>
                     <label>End Date*</label>
-                    <input name = 'endDate' required type='date' placeholder = 'Enter End Date'/>
+                    <input name = 'endDate' required type='datetime-local' placeholder = 'Enter End Date'/>
                 </div>
                 <div className= 'form-control'>
                     <label>Location*</label>

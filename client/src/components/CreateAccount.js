@@ -27,7 +27,7 @@ export const CreateAccount = () => {
            navigate('/');
        }
        else{
-           alert('Email already in use');
+           alert('Failed to create account');
        }
     }
 
@@ -74,11 +74,11 @@ export const CreateAccount = () => {
                 </div>
                 <div className= 'form-control'>
                     <label>Password*</label>
-                    <input name = 'password' required type='text' placeholder = 'Password' onChange = {checkPass}/>
+                    <input name = 'password' required type='password' placeholder = 'Password' onChange = {checkPass}/>
                 </div>
                 <div className= 'form-control'>
                     <label>Re-enter Password*</label>
-                    <input name = 'rePassword' required type='text' placeholder = 'Re-type password' onChange = {checkPass}/>
+                    <input name = 'rePassword' required type='password' placeholder = 'Re-type password' onChange = {checkPass}/>
                 </div>
                     <button name = 'button' type="submit" className = 'createbtn' disabled = {disabled}>Create your account</button>
             </form>

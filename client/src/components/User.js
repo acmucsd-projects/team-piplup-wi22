@@ -2,8 +2,6 @@ import React,{ useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import API from '../API'
-import NavigationBar from './NavigationBar'
-
 
 export const YourUser = () => {
     useEffect(() => {
@@ -36,10 +34,9 @@ export const YourUser = () => {
     if(edit === null){
       return(
         <>
-            <NavigationBar/>
             <div className = 'containerUser'>
                 <div className = 'user'>
-                  <img src={user?.pfp} alt = 'User Profile' className = 'userAvatar'></img>
+                  <img src={user?.pfp || "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"} alt = 'User Profile' className = 'userAvatar'></img>
                   <div class = 'userName'>{user?.firstName}</div>
                   <div class = 'userGrad'>Class of {user?.gradYear}</div>
                     <div className = 'userIGFB'>
@@ -66,10 +63,9 @@ export const YourUser = () => {
     else{
       return (
         <>
-          <NavigationBar/>
           <div className = 'containerUser'>
               <div className = 'user'>
-                <img src={user?.pfp} alt = 'User Profile' className = 'userAvatar'></img>
+                <img src={user?.pfp || "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"} alt = 'User Profile' className = 'userAvatar'></img>
                 <div class = 'userName'>{user?.firstName}</div>
                 <div class = 'userGrad'>Class of {user?.gradYear}</div>
                   <div className = 'userIGFB'>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import API from '../API'
-import NavigationBar from './NavigationBar'
 
 export const UserEdit = () => {
     useEffect(() => {
@@ -75,7 +74,6 @@ export const UserEdit = () => {
 
     return (
     <>
-        <NavigationBar/>
         <div className = 'containerUser'>
             <div className = 'userEdit'>
             <div className='userEditTitle'>Edit Your Account</div>

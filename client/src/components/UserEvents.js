@@ -27,9 +27,10 @@ export const UserEvents = () => {
     <div className = 'containerUser'>
         <div className = 'userEvents'>
             <div className = 'userEventsTitle'>Events Attending</div>
-            {events.map((event) => (
-              <a href={`../events/${event.id}`} >{event.title}</a>
-              ))
+            {events.map((event) => {
+              console.log(event)
+              return <a href={`/events/${event._id}`} >{event.title}</a>
+              })
             }
         </div>
         <div className = 'backToUser'>

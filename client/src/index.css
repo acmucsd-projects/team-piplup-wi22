@@ -4,7 +4,8 @@
 .bodyLogin{
   /* background-image: url(https://polisci.ucsd.edu/_images/210115-Geisel-135DSC_7396-UCSanDiego-ErikJepsen_1.jpeg); */
   background-image: url(https://live.staticflickr.com/4106/5133980202_fb59dc48f6_b.jpg);
-  height: 100%;
+  object-fit: cover;
+  height: 100vh;
   width: 100%;
   margin: 0px;
   padding: 0px;

@@ -1,7 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import NavigationBar from './NavigationBar'
 import API from '../API'
 
 export const EventPage = () => {
@@ -38,7 +37,6 @@ export const EventPage = () => {
   else{
     return(
       <>
-        <NavigationBar/>
         <div className = 'events'>{event.event.title}</div>
         <div className = 'eventDetails'> Description: {event.event.description} </div>
         <div className = 'eventDetails'> Start Date: {event.event.startDate} </div>

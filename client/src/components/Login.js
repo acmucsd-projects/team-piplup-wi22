@@ -9,6 +9,12 @@ export const Login = () => {
       });
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('user') !== ''){
+            navigate(`/user/${localStorage.getItem('user')}`)
+        }
+    },[])
     
     const loginUser = async (e) => {
         e.preventDefault();
@@ -21,7 +27,7 @@ export const Login = () => {
         console.log(response);
         if(response.status === 200){
             localStorage.setItem('user',response.data.potentialUser._id);
-            navigate("/events");
+            navigate(`/user/${response.data.potentialUser._id}`);
         }
         else{
             alert('Invalid email or password')
@@ -43,7 +49,7 @@ export const Login = () => {
             </div>
             <div className= 'form-control'>
                 <label>Password</label>
-                <input name = 'password' required type='text' placeholder = 'Password'/>
+                <input name = 'password' required type='password' placeholder = 'Password'/>
             </div>
             <button type="submit" className = 'loginbtn'>Login</button>
         </form>

@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import { useNavigate } from 'react-router-dom'
 
 import API from '../API'
-import NavigationBar from './NavigationBar'
+
 
 export const Events = () => {
 
@@ -25,7 +25,6 @@ export const Events = () => {
 
   return (
   <>
-    <NavigationBar/>
         <div className = 'events'>Events</div>
         <div className = 'createEvent'>
           <a class="btn btn-dark btn-sm" href = "/events/create" role="button" size="sm">Create Event</a>
@@ -39,7 +38,7 @@ export const Events = () => {
                 <Card.Title>{event.title}</Card.Title>
                 <Card.Subtitle className = 'subtitle'>Description: {event.description}</Card.Subtitle>
                 <div className = 'spacing'/>
-                <Card.Subtitle>Date: {event.startDate} - {event.endDate}</Card.Subtitle>
+                <Card.Subtitle>Date: {new Date(event.startDate).toLocaleString()} - {new Date(event.endDate).toLocaleString()}</Card.Subtitle>
                 <div className = 'spacing'/>
                 <Card.Subtitle>Location: {event.location}</Card.Subtitle>
                 <div className = 'spacing'/>
