@@ -1,4 +1,6 @@
 import React,{ useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import API from '../API'
 
 export const CreateAccount = () => {
@@ -7,6 +9,8 @@ export const CreateAccount = () => {
         return () => { document.body.className = ''; }
     });
 
+    const navigate = useNavigate();
+    
     const createUser = async (e) => {
         e.preventDefault();
         const payload = {
@@ -19,10 +23,11 @@ export const CreateAccount = () => {
         }
        const response = await API.createUser(payload);
        if(response.status === 200){
-           alert('Created successfully, go back to homepage to login');
+           alert('Created successfully');
+           navigate('/');
        }
        else{
-           alert('Email already in use')
+           alert('Email already in use');
        }
     }
 

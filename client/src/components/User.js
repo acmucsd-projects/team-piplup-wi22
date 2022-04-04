@@ -1,4 +1,8 @@
 import React,{ useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+
+import API from '../API'
+import NavigationBar from './NavigationBar'
 
 
 export const YourUser = () => {
@@ -7,39 +11,94 @@ export const YourUser = () => {
         return () => { document.body.className = ''; }
       });
 
-    return (
-        <div className = 'containerUser'>
-            <div className = 'user'>
-              <img src={"https://www.w3schools.com/howto/img_avatar.png"} alt = 'User Profile' className = 'userAvatar'></img>
-              <div class = 'userName'> John Smith</div>
-              <div class = 'userGrad'> Expected June 2023</div>
-                <div className = 'userIGFB'>
-                  <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png"}
-                    alt = 'Instagram' className = 'userSocialImages'></img>
-                  <div className = 'userIGFBNames'>JohnSmith</div>
-                  <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/800px-2021_Facebook_icon.svg.png"}
-                    alt = 'Facebook' className = 'userSocialImages'></img>
-                  <div className = 'userIGFBNames'>John Smith</div>
-                </div>
-                <div className = 'userDCLI'>
-                  <img src={"https://pnggrid.com/wp-content/uploads/2021/05/Discord-Logo-Circle-1024x1024.png"}
-                    alt = 'Discord' className = 'userSocialImages'></img>
-                  <div className = 'userDCLINames'>JohnSmith#1234</div>
-                  <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png"}
-                    alt = 'LinkedIn' className = 'userSocialImages'></img>
-                  <div className = 'userDCLINames'>John Smith</div>
-                </div>
-              <div className = 'userEvents'>
-                <a href = "/user/id/events">Events Attending</a>
-              </div>
-            </div>
-            {/* Only render if id matches id on page */}
-            <div className = 'editUser'>
-              <a href = "/user/id/edit">Edit Profile</a>
-            </div>
-        </div>
-  )
-}
+    const { id } = useParams();
+    
+    const [user, setUser] = useState(null);
 
+    useEffect( ()=> {
+      const fetchData = async () => {
+        const result =  await API.getUser(id);
+        setUser(result.data.user)
+        console.log(result.data.user);
+      }
+      fetchData();
+    }, [])
+
+
+    const [edit, showEdit] = useState(null);
+
+    useEffect( () => {
+      if(id === localStorage.getItem('user')){
+        showEdit([1]);
+      }
+    },[])
+
+    if(edit === null){
+      return(
+        <>
+            <NavigationBar/>
+            <div className = 'containerUser'>
+                <div className = 'user'>
+                  <img src={user?.pfp} alt = 'User Profile' className = 'userAvatar'></img>
+                  <div class = 'userName'>{user?.firstName}</div>
+                  <div class = 'userGrad'>Class of {user?.gradYear}</div>
+                    <div className = 'userIGFB'>
+                      <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png"}
+                        alt = 'Instagram' className = 'userSocialImages'></img>
+                      <div className = 'userIGFBNames'>{user?.instagramUrl}</div>
+                      <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/800px-2021_Facebook_icon.svg.png"}
+                        alt = 'Facebook' className = 'userSocialImages'></img>
+                      <div className = 'userIGFBNames'>{user?.facebookUrl}</div>
+                    </div>
+                    <div className = 'userDCLI'>
+                      <img src={"https://pnggrid.com/wp-content/uploads/2021/05/Discord-Logo-Circle-1024x1024.png"}
+                        alt = 'Discord' className = 'userSocialImages'></img>
+                      <div className = 'userDCLINames'>{user?.discordUrl}</div>
+                    </div>
+                  <div className = 'userEvents'>
+                    <a href = {`/user/${id}/events`}>Events Attending</a>
+                  </div>
+                </div>
+              </div>
+          </>
+      )
+    }
+    else{
+      return (
+        <>
+          <NavigationBar/>
+          <div className = 'containerUser'>
+              <div className = 'user'>
+                <img src={user?.pfp} alt = 'User Profile' className = 'userAvatar'></img>
+                <div class = 'userName'>{user?.firstName}</div>
+                <div class = 'userGrad'>Class of {user?.gradYear}</div>
+                  <div className = 'userIGFB'>
+                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png"}
+                      alt = 'Instagram' className = 'userSocialImages'></img>
+                    <div className = 'userIGFBNames'>{user?.instagramUrl}</div>
+                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/800px-2021_Facebook_icon.svg.png"}
+                      alt = 'Facebook' className = 'userSocialImages'></img>
+                    <div className = 'userIGFBNames'>{user?.facebookUrl}</div>
+                  </div>
+                  <div className = 'userDCLI'>
+                    <img src={"https://pnggrid.com/wp-content/uploads/2021/05/Discord-Logo-Circle-1024x1024.png"}
+                      alt = 'Discord' className = 'userSocialImages'></img>
+                    <div className = 'userDCLINames'>{user?.discordUrl}</div>
+                  </div>
+                <div className = 'userEvents'>
+                  <a href = {`/user/${id}/events`}>Events Attending</a>
+                </div>
+              </div>
+              {/* Only render if id matches id on page */}
+              {edit.map((show) => (
+                <div className = 'editUser'>
+                  <a href = {`/user/${id}/edit`}>Edit Profile</a>
+                </div>
+              ))}
+          </div>
+        </>
+    )
+    }
+}
 
 export default YourUser

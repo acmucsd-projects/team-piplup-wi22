@@ -84,6 +84,7 @@ router.post("/login", async function (req, res) {
     }
     res.status(200).json({ potentialUser });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error });
   }
 });

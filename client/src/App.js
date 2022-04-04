@@ -6,6 +6,7 @@ import UserEvents from './components/UserEvents'
 import UserEdit from './components/UserEdit'
 import EventPage from './components/EventPage'
 import Events from './components/Events'
+import CreateEvent from './components/CreateEvent'
 
 function App() {
   return (
@@ -16,14 +17,15 @@ function App() {
         <Route path = '/create-account' element = {<CreateAccount/>}/>
       </Routes>
       <Routes>
-        <Route path = '/user/id' element = {<User/>}/>
-        <Route path = '/user/id/events' element = {<UserEvents/>}/>
-        <Route path = '/user/id/edit' element = {<UserEdit/>}/>
+        <Route path = '/user/:id' element = {<User/>}/>
+        <Route path = '/user/:id/events' element = {<UserEvents/>}/>
+        <Route path = '/user/:id/edit' element = {<UserEdit/>}/>
       </Routes>
 
       <Routes>
-        <Route path ='/events/id' element = {<EventPage/>}/>
+        <Route path ='/events/:id' element = {<EventPage/>}/>
         <Route path ='/events' element={<Events/>}/>
+        <Route path = '/events/create' element = {<CreateEvent/>}/>
       </Routes>
     </Router>
     </>
