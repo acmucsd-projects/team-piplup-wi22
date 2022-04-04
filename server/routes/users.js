@@ -60,11 +60,25 @@ router.get("/", async (req, res, next) => {
 
 //POST user(under the assumption input is correct)
 router.post("/", async function (req, res) {
-  const { user } = req.body;
-  const newUser = await User.create(user);
-  newUser.password = await bcrypt.hash(newUser.password, saltRounds);
-  await newUser.save();
-  res.status(200).json({ newUser });
+  try {
+    const { user } = req.body;
+    const { email } = user;
+    if (!email.endsWith("@ucsd.edu")) {
+      return res
+        .status(400)
+        .json({ error: `You must use an UCSD email to sign in - ${email}` });
+    }
+    const userInDatabase = await User.findOne({ email });
+    if (userInDatabase) {
+      return res.status(400).json({ error: `Email already exist - ${email}` });
+    }
+    const newUser = await User.create(user);
+    newUser.password = await bcrypt.hash(newUser.password, saltRounds);
+    await newUser.save();
+    res.status(200).json({ newUser });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 router.post("/login", async function (req, res) {
@@ -79,7 +93,7 @@ router.post("/login", async function (req, res) {
     const isMatch = await bcrypt.compare(password, potentialUser.password);
     if (!isMatch) {
       return res
-        .status(404)
+        .status(400)
         .json({ error: "Password does not match", email, password });
     }
     res.status(200).json({ potentialUser });
@@ -93,6 +107,10 @@ router.put("/:id", async function (req, res) {
   try {
     const { id } = req.params;
     const { update } = req.body;
+    const { password } = update;
+    if (password) {
+      update.password = await bcrypt.hash(password, saltRounds);
+    }
     const user = await User.findByIdAndUpdate(id, update, { new: true });
     if (!user) {
       return res.status(404).json({ error: "User does not exist", id });
