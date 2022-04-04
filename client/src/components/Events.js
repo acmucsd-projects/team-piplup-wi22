@@ -6,14 +6,9 @@ export const Events = () => {
 
       });
     return (
-
-    <>
-      <NavigationBar/>
-      <div className = 'containerEvent'>
-          <div className = 'events'>Events</div>
-      </div>
-    </>
-    
+    <div className = 'containerEvent'>
+        <div className = 'events'>Events</div>
+    </div>
   )
 }
 

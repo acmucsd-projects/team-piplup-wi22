@@ -20,7 +20,7 @@ export const NavigationBar = () => {
                     <Nav.Link href="/user/id">Profile</Nav.Link>
                     <Nav.Link href="/events">Events</Nav.Link>
                 </Nav>
-                <Nav className="justify-content-end">
+                <Nav>
                         <Nav.Link href="/">Sign Out</Nav.Link>
                 </Nav>
 

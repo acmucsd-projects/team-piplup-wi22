@@ -6,10 +6,12 @@ import UserEvents from './components/UserEvents'
 import UserEdit from './components/UserEdit'
 import EventPage from './components/EventPage'
 import Events from './components/Events'
+import NavigationBar from './components/NavigationBar'
 
 function App() {
   return (
     <>
+    <NavigationBar/>
     <Router>
       <Routes>
         <Route path = '/' element = {<Login/>} />
