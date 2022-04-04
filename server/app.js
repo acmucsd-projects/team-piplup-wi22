@@ -26,9 +26,11 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
+    console.log("Connected to MongoDB database");
   });
 
 app.listen(config.PORT, () => {
+  console.log("Server started on port " + config.PORT);
 });
 
 module.exports = app;
