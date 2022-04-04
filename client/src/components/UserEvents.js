@@ -16,7 +16,6 @@ export const UserEvents = () => {
     useEffect( ()=> {
       const fetchData = async () => {
         const result =  await API.getUserEvents(id);
-        console.log(result.data);
         setUserEvents(result.data.events);
       }
       fetchData();
@@ -28,7 +27,6 @@ export const UserEvents = () => {
         <div className = 'userEvents'>
             <div className = 'userEventsTitle'>Events Attending</div>
             {events.map((event) => {
-              console.log(event)
               return <a href={`/events/${event._id}`} >{event.title}</a>
               })
             }

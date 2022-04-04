@@ -15,7 +15,6 @@ export const CreateEvent = () => {
 
     const createEvent = async (e) => {
         e.preventDefault();
-        console.log(e.target.startDate.value)
         const payload = {
             event: {
                 title: e.target.title.value,

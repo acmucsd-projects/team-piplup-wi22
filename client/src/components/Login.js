@@ -24,7 +24,6 @@ export const Login = () => {
         }
 
         const response = await API.checkUser(payload);
-        console.log(response);
         if(response.status === 200){
             localStorage.setItem('user',response.data.potentialUser._id);
             navigate(`/user/${response.data.potentialUser._id}`);

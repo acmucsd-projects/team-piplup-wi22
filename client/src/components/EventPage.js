@@ -11,7 +11,6 @@ export const EventPage = () => {
   useEffect( ()=> {
     const fetchData = async () => {
       const result =  await API.getEvent(id);
-      console.log(result.data);
       setEvent(result.data);
     }
     fetchData();

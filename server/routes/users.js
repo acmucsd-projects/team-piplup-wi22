@@ -142,7 +142,6 @@ router.put("/:id/picture", storage.single("image"), async function (req, res) {
     return res.status(404).json({ error: "User does not exist", id });
   }
   const profilePicture = await upload(req.file, id);
-  console.log(profilePicture);
   const user = await User.findByIdAndUpdate(
     id,
     { pfp: profilePicture },
