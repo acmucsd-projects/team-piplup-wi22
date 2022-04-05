@@ -65,7 +65,7 @@ export const YourUser = () => {
           <div className = 'containerUser'>
               <div className = 'user'>
                 <img src={user?.pfp || "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"} alt = 'User Profile' className = 'userAvatar'></img>
-                <div class = 'userName'>{user?.firstName}</div>
+                <div class = 'userName'>{user?.firstName} {user?.lastName}</div>
                 <div class = 'userGrad'>Class of {user?.gradYear}</div>
                   <div className = 'userIGFB'>
                     <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png"}
